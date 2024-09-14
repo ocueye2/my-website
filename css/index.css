@@ -1,0 +1,9 @@
+.glass {
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(159, 159, 159, 0.195);
+    color: white;
+    text-align: center;
+}
