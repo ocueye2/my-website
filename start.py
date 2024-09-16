@@ -32,15 +32,30 @@ class webui(object):
         return load("bake/servers.html")
 
     @cherrypy.expose
-    def submit(self,phone="empty",email="empty",message="empty",pref=""):
+    def submit(self,phone="empty",email="empty",message="empty",pref="",name=""):
+        global contact
         if phone == "empty":
             return load("bake/error.html")
         else:
+            f = open(f"{base_dir}/contact.html","a")
+            f.write(f"""
+            {{
+                "name":"{name}",
+                "pref":"{pref}",
+                "email":"{email}",
+                "phone":"{phone}",
+                "message":"{message}",
+            }},
+            """)
+            f.close()
+
             return load("bake/submit.html")
+            
 
     def default(self, attr='abc'):
-        return "Page not Found!"
+        return load("bake/404.html")
     default.exposed = True
+
 
 
 if __name__ == '__main__':
