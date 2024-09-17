@@ -1,5 +1,4 @@
 services:
   cherrypy-app:
-    image: ocueye2/my-cherrypy-app:latest
     ports:
       - "8080:8080"
