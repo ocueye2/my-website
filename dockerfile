@@ -1,5 +1,5 @@
 # Start with your base image
-FROM python:3.12.3
+FROM python:3.10
 
 # Install any required dependencies
 RUN pip install --upgrade pip
