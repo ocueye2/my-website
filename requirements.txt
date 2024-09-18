@@ -1,2 +1,2 @@
-cherrypy>=18.10.0
+cherrypy==18.10.0
 '
