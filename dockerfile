@@ -1,10 +1,6 @@
 # Start with your base image
 FROM  Ubuntu:24.04
 
-# Install any required dependencies
-RUN pip install --upgrade pip
-RUN pip install --upgrade cherrypy
-
 # Set the working directory in the container
 WORKDIR /app
 
