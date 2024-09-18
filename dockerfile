@@ -1,10 +1,9 @@
-# Use Ubuntu 24.04.1 LTS as a parent image
-FROM Ubuntu:24.04.1
+# Start with your base image
+FROM python:3.11
 
-# Install Python 3 and pip
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    apt-get clean
+# Install any required dependencies
+RUN pip install --upgrade pip
+RUN pip install --upgrade cherrypy
 
 # Set the working directory in the container
 WORKDIR /app
