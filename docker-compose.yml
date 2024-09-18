@@ -1,7 +1,8 @@
 services:
-  web:
+  python-app:
     build: .
     ports:
-      - "8080:8080"
+      - "8080:8080"  # If your Python script exposes a web service, adjust ports accordingly
     volumes:
-      - .:/app
+      - .:/usr/src/app
+    command: python ./your_script.py
