@@ -61,7 +61,7 @@ class webui(object):
 if __name__ == '__main__':
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0',  # Bind to all available network interfaces
-        'server.socket_port': 1232,
+        'server.socket_port': 8080,
         'log.screen': False  
     })
     cherrypy.quickstart(webui())
