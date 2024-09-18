@@ -1,4 +1,6 @@
 services:
-  cherrypy-app:
+  my-website:
+    image: my-website:latest
     ports:
       - "8080:8080"
+
