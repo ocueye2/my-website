@@ -21,4 +21,5 @@ COPY . /app/
 EXPOSE 8080
 
 # Define the command to run your CherryPy application
+CMD ["ls"]
 CMD ["python", "start.py"]
