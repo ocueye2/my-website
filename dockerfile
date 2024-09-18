@@ -9,8 +9,7 @@ COPY requirements.txt .
 
 RUN 
 # Install any needed packages specified in requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
-
+RUN pip install cherrypy
 # Copy the rest of your application code into the container at /app
 COPY . .
 
