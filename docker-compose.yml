@@ -5,4 +5,4 @@ services:
       - "8080:8080"  # If your Python script exposes a web service, adjust ports accordingly
     volumes:
       - .:/usr/src/app
-    command: python ./your_script.py
+    command: python ./app.py
