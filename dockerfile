@@ -1,5 +1,5 @@
 # Use Ubuntu 24.04.1 LTS as a parent image
-FROM ubuntu:24.04
+FROM Ubuntu:24.04.1
 
 # Install Python 3 and pip
 RUN apt-get update && \
