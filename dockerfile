@@ -1,24 +1,14 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim
-
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+FROM python:3.10-slim
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy the requirements file into the container at /app
-COPY requirements.txt /app/
+# Copy the current directory contents into the container
+COPY . .
 
-# Install any needed packages specified in requirements.txt
+# Install any dependencies (from requirements.txt, if any)
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code into the container
-COPY . /app/
-
-# Expose the port CherryPy will run on
-EXPOSE 8080
-
-# Define the command to run your CherryPy application
+# Run the script when the container launches
 CMD ["python", "app.py"]
