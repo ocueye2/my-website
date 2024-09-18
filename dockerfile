@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12.3
+FROM ubuntu:24.04
 
 # Set the working directory in the container
 WORKDIR /app
@@ -20,4 +20,4 @@ EXPOSE 8080
 ENV NAME World
 
 # Run app.py when the container launches
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
