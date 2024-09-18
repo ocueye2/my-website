@@ -3,7 +3,7 @@ services:
     build:
       context: .  # Path to the directory containing your Dockerfile
     ports:
-      - "5000:5000"  # Expose ports if your script runs a web service
+      - "8080:8080"  # Expose ports if your script runs a web service
     volumes:
       - .:/usr/src/app  # Mount the current directory to /usr/src/app in the container
     command: python ./app.py  # Command to run your Python script
