@@ -1,5 +1,5 @@
 # Start with your base image
-FROM python:3.10
+FROM  Ubuntu:24.04
 
 # Install any required dependencies
 RUN pip install --upgrade pip
