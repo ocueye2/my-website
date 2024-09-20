@@ -3,6 +3,7 @@ import os
 import sys
 
 base_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+host = f"{base_dir}/website"
 
 def load(file):
     try:
@@ -32,45 +33,51 @@ class webui(object):
         return load("bake/servers.html")
 
     @cherrypy.expose
-    def submit(self,phone="empty",email="empty",message="empty",pref="",name=""):
+    def Maintenence(self):
+        return load("bake/gitserver.html")
+
+    @cherrypy.expose
+    def submit(self, phone="empty", email="empty", message="empty", pref="", name=""):
         global contact
         if phone == "empty":
             return load("bake/error.html")
         else:
-            f = open(f"{base_dir}/contact.html","a")
-            f.write(f"""
-            {{
-                "name":"{name}",
-                "pref":"{pref}",
-                "email":"{email}",
-                "phone":"{phone}",
-                "message":"{message}",
-            }},
-            """)
-            f.close()
-
+            with open(f"{base_dir}/contact.html", "a") as f:
+                f.write(f"""
+                {{
+                    "name": "{name}",
+                    "pref": "{pref}",
+                    "email": "{email}",
+                    "phone": "{phone}",
+                    "message": "{message}",
+                }},
+                """)
             return load("bake/submit.html")
-            
 
     def default(self, attr='abc'):
         return load("bake/404.html")
     default.exposed = True
 
 
-
 if __name__ == '__main__':
-    cherrypy.config.update({
-        'server.socket_host': '0.0.0.0',  # Bind to all available network interfaces
-        'server.socket_port': 8080,
-        'log.screen': True  ,
+    base_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+    host = f"{base_dir}/website"
+    
+    # Configuration to serve static files from ./static directory
+    config = {
         '/': {
-            'tools.sessions.on': True,
-            'tools.staticdir.root': os.path.abspath(os.getcwd())
+            'tools.staticdir.root': base_dir
         },
         '/static': {
             'tools.staticdir.on': True,
-            'tools.staticdir.dir': './public'
+            'tools.staticdir.dir': './static'
         }
-
+    }
+    
+    cherrypy.config.update({
+        'server.socket_host': '0.0.0.0',  # Bind to all available network interfaces
+        'server.socket_port': 8080,
+        'log.screen': True,
     })
-    cherrypy.quickstart(webui())
+    
+    cherrypy.quickstart(webui(), '/', config)
