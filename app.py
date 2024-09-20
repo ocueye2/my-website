@@ -63,5 +63,15 @@ if __name__ == '__main__':
         'server.socket_host': '0.0.0.0',  # Bind to all available network interfaces
         'server.socket_port': 8080,
         'log.screen': True  
+        '/': {
+            'tools.sessions.on': True,
+            'tools.staticdir.root': os.path.abspath(os.getcwd())
+        },
+        '/static': {
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': './public'
+        }
+    }
+
     })
     cherrypy.quickstart(webui())
