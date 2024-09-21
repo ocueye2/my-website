@@ -1,4 +1,7 @@
 
+if(window.innerHeight > window.innerWidth){
+    alert("Please use Landscape!");
+}
 const slidesContainer = document.getElementById("slides-container");
 const subs = document.querySelectorAll("table"); // Select all elements with the class 'sub'
 const slide = document.querySelector(".slide");
@@ -10,7 +13,7 @@ function moveSubDownAndSlide(action) {
 
     subs.forEach(sub => {
         sub.style.transition = "transform .7s ease"; // Add transition for smooth animation
-        sub.style.transform = "translateY(100%)"; // Move sub down (100% of its height)
+        sub.style.transform = "translateY(-200%)"; // Move sub down (100% of its height)
     });
 
     // Wait for the subs to move out of sight before advancing the slide
@@ -42,5 +45,6 @@ nextButton.addEventListener("click", () => {
 prevButton.addEventListener("click", () => {
     moveSubDownAndSlide("prev");
 });
+
 
         
