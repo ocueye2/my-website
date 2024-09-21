@@ -1,5 +1,3 @@
-# v2
-# the above comment is ment to trigger the autopulll in portainer
 services:
   web:
     build: .
