@@ -1,3 +1,4 @@
+
 const slidesContainer = document.getElementById("slides-container");
 const subs = document.querySelectorAll("table"); // Select all elements with the class 'sub'
 const slide = document.querySelector(".slide");
@@ -41,3 +42,5 @@ nextButton.addEventListener("click", () => {
 prevButton.addEventListener("click", () => {
     moveSubDownAndSlide("prev");
 });
+
+        
