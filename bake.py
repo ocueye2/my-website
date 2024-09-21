@@ -22,7 +22,7 @@ def bake():
         <html>
     <head>
         <title>{i.split(".")[0]}</title>
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="https://carsonmayn.com/static/favicon.png">
         <style>
         {load(f"css/{name}.css")}
         {load(f"other/all.css")}
