@@ -3,64 +3,155 @@
     <head>
         <title>projects</title>
         <style>
-        .glass {
-    border-radius: 20px;
-    padding: 20px;
-    margin: 20px;
-    backdrop-filter: blur(10px);
-    background-color: rgba(159, 159, 159, 0.195);
-    color: white;
-    text-align: center;
+        
+.carousel-container {
+    position: relative;
+    width: 70%;
+    max-width: 900px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 }
-.gitbutton {
-    width: fit-content;
+
+.carousel-slide {
     display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 25px;
-    background-color: #24292f;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition:  0.3s ease;
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    margin: 20px;
+    transition: transform 0.5s ease-in-out;
 }
-.gitbutton:hover {
-    transition: all 0.3s ease;
-    background-color: rgb(1, 187, 1);
-    transform: scale(1.4);
+
+.carousel-slide img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+    z-index: 1;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    max-width: 1440px;
+    margin: auto;
+  }
+  
+  .slider-wrapper {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slides-container {
+    height: calc(100vh - 2rem);
+    width: 100%;
+    display: flex;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slide-arrow {
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 4rem;
+    background-color: white;
+    border: none;
+    width: 2rem;
+    font-size: 3rem;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 100ms;
+  }
+  
+  .slide-arrow:hover,
+  .slide-arrow:focus {
+    opacity: 1;
+  }
+  
+  #slide-arrow-prev {
+    left: 0;
+    padding-left: 0.25rem;
+    border-radius: 0 2rem 2rem 0;
+    z-index: 100;
+  }
+  
+  #slide-arrow-next {
+    z-index: 100;
+    right: 0;
+    padding-left: 0.75rem;
+    border-radius: 2rem 0 0 2rem;
+  }
+  
+  .slide {
+    width: 100%;
+    height: 100%;
+    flex: 1 0 100%;
+    border-radius: 20px;
+  }
+  
+  
+  footer {
+    padding: 1em;
+    text-align: center;
+    background-color: #FFDFB9;
+  }
+  
+  footer a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  footer .heart {
+    color: #DC143C;
+  }
+
+.sub {
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+background-size: contain;
+border-radius: 20px;
+}
+table{
+    width: 90%;
+    height: 100%;
     
 }
-.gitbutton img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
 
-}
-table {
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-
-}
 th {
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.git {
-    background-color: white;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-
-}
-.project {
-    background-color: black;
-    border-radius: 20px;
+    position:relative;
+    width: 50%;
+    top: 100%;
+    height: 80%;
 }
         body {
     background: hsla(183, 100%, 68%, 1);
@@ -161,69 +252,106 @@ p {
 
 
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="glass">
-            <div class="project" style="background-color: rgb(52, 98, 158);">
-                <br>
-                <h1 style>Hyprdash</h1>
-                <p style="margin: 20px;">A nice looking dashboard for all of your home servers. Designed to have a nice frosted glass look</p>
-                <img src="https://carsonmayn.com/static/hyprdash.png" width="100%" height="100%"> 
-                <div class="git">
-                    <table>
-                        <tr>
-                            <th>
-                            <a class="gitbutton" href="https://pub.carsonmayn.com/resources/logo.svg">
-                                <img src="https://carsonmayn.com/static/github-mark-white.svg" width="20px" height="20px">
-                                 On github
-                            </a>
-                            </th>
-                            <th>
-                            <a class="gitbutton" href="https://carsonmayn.com/Maintenence">
-                                <img src="https://carsonmayn.com/static/image.png" width="20px" height="20px">
-                                 On my git server
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="project">
-                <br>
-                <h1>ezweb</h1>
-                <p style="margin: 20px;"> This was a simple web server I made for development that allowed you to easly merge your css, html, and js on page load. This webserver also has the ablility to automaticly add a nav bar to all of your pages and handel 404 with a custom page.</p>
-                <img src="https://carsonmayn.com/static/ezweb.png" width="100%" height="150%"> 
-                <div class="git">
-                    <table>
-                        <tr>
-                            <th>
-                            <a class="gitbutton" href="https://github.com/ocueye2/ezweb">
-                                <img src="https://carsonmayn.com/static/github-mark-white.svg" width="20px" height="20px">
-                                 On github
-                            </a>
-                            </th>
-                            <th>
-                            <a class="gitbutton" href="https://carsonmayn.com/Maintenence">
-                                <img src="https://carsonmayn.com/static/image.png" width="20px" height="20px">
-                                 On my git server
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+<body>
 
-        
-    </body>
-</html>
+    <br>
+    <br>
+    <br>
+    <section class="slider-wrapper">
+        <button class="slide-arrow" id="slide-arrow-prev">
+          &#8249;
+        </button>
+        <button class="slide-arrow" id="slide-arrow-next">
+          &#8250;
+        </button>
+        <ul class="slides-container" id="slides-container">
+          <li class="slide">
+            <div class="sub" style="background-image: url(https://carsonmayn.com/static/hyprdash.png);">
+                <table>
+                <tr>
+                <th> </th>
+                <th>
+                        <div class="glass" style="backdrop-filter: blur(30px); margin: 20px;">
+                            <h1>Hyprdash</h1>
+                            <h3 style="text-align: left;">This is a dashboard i made, inspired by the frosted glass theme. It is a easy way to find all of your services. 
+                              It uses the filesystem + a simple format to generate the dashboard. It is quick and easy to set up. I am currently working on porting it to docker.
+                            </h3>
+                        </div>
+                </th>
+                </tr>
+                </table>
+            </div>
+          </li>
+
+          
+          <li class="slide">
+            <div class="sub" style="background-image: url(https://carsonmayn.com/static/hyprdash.png);">
+                <table>
+                <tr>
+                <th> </th>
+                <th>
+                        <div class="glass" style="backdrop-filter: blur(30px); margin: 20px;">
+                            <h1>Hyprdash</h1>
+                            <h3 style="text-align: left;">This is a dashboard i made, inspired by the frosted glass theme. It is a easy way to find all of your services. 
+                              It uses the filesystem + a simple format to generate the dashboard. It is quick and easy to set up. I am currently working on porting it to docker.
+                            </h3>
+                        </div>
+                </th>
+                </tr>
+                </table>
+            </div>
+          </li>
+          <li class="slide">c</li>
+          <li class="slide">d</li>
+        </ul>
+      </section>
+      
+    <script>
+        const slidesContainer = document.getElementById("slides-container");
+const subs = document.querySelectorAll("table"); // Select all elements with the class 'sub'
+const slide = document.querySelector(".slide");
+const prevButton = document.getElementById("slide-arrow-prev");
+const nextButton = document.getElementById("slide-arrow-next");
+
+function moveSubDownAndSlide(action) {
+    // Move all elements with the 'sub' class down out of view
+
+    subs.forEach(sub => {
+        sub.style.transition = "transform .7s ease"; // Add transition for smooth animation
+        sub.style.transform = "translateY(100%)"; // Move sub down (100% of its height)
+    });
+
+    // Wait for the subs to move out of sight before advancing the slide
+    setTimeout(() => {
+        const slideWidth = slide.clientWidth;
+
+        // Advance or go back the slide
+        if (action === "next") {
+            slidesContainer.scrollLeft += slideWidth;
+        } else if (action === "prev") {
+            slidesContainer.scrollLeft -= slideWidth;
+        }
+
+        // After the slide movement, move the subs back into view
+        setTimeout(() => {
+            subs.forEach(sub => {
+                sub.style.transform = "translateY(0%)"; // Bring sub back up
+            });
+        }, 200); // Delay slightly to give room for the slide to change
+    }, 500); // Wait for subs to move down before advancing slide
+}
+
+// Handle the next button click
+nextButton.addEventListener("click", () => {
+    moveSubDownAndSlide("next");
+});
+
+// Handle the previous button click
+prevButton.addEventListener("click", () => {
+    moveSubDownAndSlide("prev");
+});
+
+        </script>
     
     </body>
         

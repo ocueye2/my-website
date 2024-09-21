@@ -3,10 +3,13 @@ import sys
 
 def load(file):
     path = os.path.dirname(sys.argv[0])
-    f = open(f"{path}/{file}")
-    out = f.read()
-    f.close()
-    return out
+    try:
+        f = open(f"{path}/{file}")
+        out = f.read()
+        f.close()
+        return out
+    except:
+        return ""
 
 def bake():
     path = os.path.dirname(sys.argv[0])
@@ -28,6 +31,9 @@ def bake():
     <body>
     {load(f"other/nav.html")}
     {load(f"html/{name}.html")}
+    <script>
+        {load(f"js/{name}.js")}
+        </script>
     
     </body>
         """
