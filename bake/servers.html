@@ -4,66 +4,137 @@
         <title>servers</title>
         <link rel="icon" type="image/x-icon" href="https://carsonmayn.com/static/favicon.png">
         <style>
-        .glass {
+        * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    max-width: 1440px;
+    margin: auto;
+  }
+  
+  .sub {
+    height: 100%;
+    background-size: cover;
     border-radius: 20px;
-    padding: 20px;
-    margin: 20px;
-    backdrop-filter: blur(10px);
-    background-color: rgba(159, 159, 159, 0.195);
-    color: white;
-    text-align: center;
-}
-.minecraft {
-background-image: url("https://static.planetminecraft.com/files/resource_media/screenshot/1236/pack_3530346.jpg");
-padding: 20px;
-border-radius: 20px;
-
-
-}
-.st {
-    background-color: rgb(255, 255, 255);
-    padding: 20px;
-border-radius: 20px;
-
-
-}
-.up {
-    background-color: rgb(9, 99, 41);
-    padding: 20px;
-border-radius: 20px;
-
-}
-
-.button {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.modern-btn {
-    perspective: 1000px;
-    background-color: #9da29d82; 
-    border-color: black;
-    border-width: 3px;
+  }
+  
+  button {
+    z-index: 1000;
+  }
+  
+  .slider-wrapper {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slides-container {
+    height: calc(100vh - 2rem);
+    width: 100%;
+    display: flex;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slide-arrow {
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 4rem;
+    background-color: white;
     border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    width: 2rem;
+    font-size: 3rem;
+    padding: 0;
     cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.modern-btn:hover {
-    background-color: #45a049; 
-    transform: scale(1.7);
+    opacity: 0.5;
+    transition: opacity 100ms;
+  }
+  
+  .slide-arrow:hover,
+  .slide-arrow:focus {
+    opacity: 1;
+  }
+  
+  #slide-arrow-prev {
+    left: 0;
+    padding-left: 0.25rem;
+    border-radius: 0 2rem 2rem 0;
+  }
+  
+  #slide-arrow-next {
+    right: 0;
+    padding-left: 0.75rem;
+    border-radius: 2rem 0 0 2rem;
+  }
+  
+  .slide {
+    width: 100%;
+    height: 100%;
+    flex: 1 0 100%;
+  }
+  
+  
+  footer {
+    padding: 1em;
+    text-align: center;
+    background-color: #FFDFB9;
+  }
+  
+  footer a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  footer .heart {
+    color: #DC143C;
+  }
+  table {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+  
+  }
+  th {
+    width: 50%;
+    height: 100%;
+  }
+  .gitea , .github{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  border-radius: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  transform: scale(1);
+  transition: all .3s;
+  z-index: 10;
+  }
+  
+  
+  .gitea p, .github p{
     margin-left: 10px;
-    margin-Right: 10px;; /* 3D rotation on hover */
-}
-
+    transform: scale(1);
+    transition: all .3s;
+  }
+  
+  .gitea:hover, .github:hover{
+    z-index: 100;
+    transform: scale(1.3);
+    transition: all .3s;
+    background-color: greenyellow;
+  }
         body {
     background: hsla(183, 100%, 68%, 1);
 
@@ -163,68 +234,90 @@ p {
 
 
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="glass">
-            <h1>My Servers</h1>
-        </div>
-        <div class="glass">
-            <div class="minecraft">
-                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/logos/Global-Header_MCCB-Logo_300x51.svg" alt="Mc logo" width="500" height="100">
-                <div class="glass">
-                    <p>For a club at my school, I host a minecraft server at my house.
-                        I host it within docker via crafty. 
+<body>
 
-
-                    </p>
-                    <div class="button">
-                        <a class="modern-btn">check status</a>
-                    </div>
-                    
-                </div>
+    <br>
+    <br>
+    <br>
+    <section class="slider-wrapper">
+        <button class="slide-arrow" id="slide-arrow-prev">
+          &#8249;
+        </button>
+        <button class="slide-arrow" id="slide-arrow-next">
+          &#8250;
+        </button>
+        <ul class="slides-container" id="slides-container">
+          <li class="slide">
+            <div class="sub" style="background-image: url(https://carsonmayn.com/static/image.webp);">
+                <table>
+                <tr>
+                <th> </th>
+                <th>
+                        <div class="glass" style="backdrop-filter: blur(30px); margin: 20px;">
+                            <h1>Minecraft</h1>
+                            <h3 style="text-align: left;"> I Host a minecraft server for the minecraft club at my school
+                            </h3>
+                        </div>
+                </th>
+                </tr>
+                </table>
             </div>
-        </div>
-        <div class="glass">
-            <div class="st">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAA5FBMVEX///89pv9NTU1KSkr///0xo/81pP9DQ0NAQEBERERHR0cqof////s9PT35+flUVFTw8PCjo6PJyclfX19kZGS8vLycnJxubm6rq6uGhobd3d2Tk5Pz8/Ok0v/U1NSNjY1ycnLm5uZ6enrOzs7AwMDS5/+ZzP/e4uVIqfza5/OxsbHG3PHn7/fR4fLB2vTf8P+PuuV7u/iz0/RVr/2LwPNxtfXC4v98ufLk7PNaoN9quP+jyO640uptsPFwrudFpPOu1v+oyeiKxPxKnOOwx9242/5/teiYv+fL2efF4Plruv/X6vy6EFtBAAAWyElEQVR4nN1dCVubWBc2AW5IIBj3pbjEVkVN4sTEpVoba6e11v//f74ASbgXznuAhBi/Oc8z88woIIezr3dpaZ6gz/XpiwT35uT7T8+whiAGX38/nf23UHWfHi3LEKUxCGFZ3sl/Bkm93TWsCLsJGNZ9+7+Ao7M3MAj0QlJa3oOz6BecEZxfngHQGxHSe02ho+M291f3dxvOR/wWdrtnsfj5YPXhqzuN809b5Xq9bg7/Ka8fnDc/GJZnXcifCq+WrigyuhtHy3WzppXHoNUq9eWd1Y+DpN7JhF9AxiSKzU1Nxi7Csr725YPg6JzwAqiiuKeiuLtTqSawGyNZX1tdEE4KnKVomDiKL9K9q4fVGsIvwNHc+rwwxMZwUcrKoT4Io9+a3No4MFn8fKhVVhaI3BDshzz4lYxeZPmdlWXInzJUjnYXimAuDjVuI9Wxu2Um1QtNRm1x0qjn0TFDEXyItMwXLZVBJ6CVF4Wi3c+DoCh1Jgg2Dgj7wKBY214MguksKsRETIUXqZjdbBIogfllERg+8QgKw/K+Xj8ODMsIcL2TEMzOoWOoLIBRr1gEh2ah01jSbVt3/jz0LOM+ouBKLg4dgVZ7dyqesQS0bl3Jd9G/daP/2aznxy9AsfG+CLoeYwiN0hu88ZM5FYJDo7H1jugNzXWPQdA6ceGNW5UpERyK4s47IrjUx9GgMC7wfTupCGo+0L+qv6PN6GAKCq/NIJjColrFXF7bWl8rmxUKy/cTxTOsRo1rJqZLYdFa5XB1hENzY51w6mrr74Pfkn4PSWjcM7mYTyyCtcqO4mLvE46r+U6BBraExl+Ggpsci2rVw0QkuLqe4NX6u8QZbahljC5DQdYOajXSZ9mIKx3tPfgUGwrhMRRc5VzR6hqgTcKDre/PBysJdGgohIft/NJnZAJ8MA/gp2kcqChqa/NASoE21qNn+K79KoNgfZP7g+eq+M5d2WAeNR6Yu9aZaKJ+zv/JbVWnVuabYtRh0CsYQ+jsMEKYTpQvyzKKlZQPMiN0sBBiX3TpgLETaRT0YVW2Glq5OHSSwOjRV3zXBoOgmYkiG3JIOVciwsyT0ceWcL+MtUxWvbEquUNaeX6SyPijd/CmxhpGMHtAtCLxwfyIiHnUYvQoo2Vqh9mpIUXO87OJ/2A9inmUEUJtmdFOCdiMvlRlTt6pgx1ubOubjC9j5sqfORG3V+dk9W8xCfFrbWFTn9c72Z18LG15RlRo+IZDCkxCJmtRzZ122Z3w6VwSxDbCryS68KZdxhJq+VMS5+PvVTuaBRUA37AUttA9zvrsllCByL0tPmPjYgSxpTjiDMVUbzF2HuZgEp8hhsJG93xhovrqdAr/8+iR2uG0iCC4wGrmBd3jMIaiwoaEDGyPRHG5YDa1cQ7fgm7JJ8yj2vQvOOLTKXkAAiahtYfu2Wd41NyY+lVGjy1YEJkqhYek0GUiiurBDC+zbc5BEHEt1LhC9zDp3xl41Icw4i9UEF0PIViykO/sMLZ+ajUTwkbAp2aBaUUdWwoshUfYH9XWZoxgg3isOttnUuAOUrAk0LuuMmpm5pK8qxUriPoelkJIwmWsZmqzFzr9mHNGYZahhUkIs/jnRYW9AHx/tzBBZKQQeqQOYykqnwp4Kd8frBRVEX7D5V4DpZ8O5uLNyDBUZAVwewD2Na6GPoPszD6XHy0mdm1Wy1pBvRmMFMK4kMlcFNYyslnR1grhBqb7ECaB95lidqVZxFsNoTEU9UKexZBQIBIeMiQsLvvwqVrM18K2UKCK9meGhAWW4ZuVehEt4AwJLdAX5DBJ/GoRlmIMK4U0EP3AhYoesPbbjCKtFfBKE3C1AjxTm2mcAWETR8LCbHQIK0qUOZ1ivcAkRA7bF0YKzWKrYg0ZwzbTJYGB631CDhuXIS268U56nnM/1ROYtgtU02YrTVO9BAMSYz5ORULOYTuhb3GZqKkQ5Q7gYToStjAJLdBhySjSotxICs6Q6UoBPGwggKngFGl9fp3orQHMNbCg4xQiMhWrDAnn2K11bcGMHwu4BRGaCib9NEcSdowpSdhl9Aztkq4yKdL5SeEZ22/GAKNnxCV9yxZjC+fWNOnn46fzJJioAugZJrTPXS20HbfVal1ets8uL4f/4To66vY4sZDpSgEH57kRUzC1puy5C7t1+e1H//m6N/BEsFrDskTJGzw+Xj+f/Ph26cbLJMdD08V0fTLA6JkSHfo2IH5DdyYTH+nu28lfzzIMQ5p5G/GNEIYP3t+Ht5aEZcsT4nG6hRT5Q98VrGeytOfZrdeuZ6SOvfsTcff9MdX0a6PEDbAwoGMmFbQL2MBqRltPJWHrqlfKPNQvJi7M0CkR17DKzgJmUtGjnzgLCVu32dErSSMBlx7ONaTBbd64ifG5U2pN9lm3lGuceNKs6wyjO8GNsDDgMnqGTnQzYRM7Ua+37+NaJRXD0RvYfhsaLtHy8IvJz9BMuoMdNq6T0DnJw54BTHAKwleY00yBR8ykdHNJk7H2OEdqX2TY+RIDMe4ccP3IgOtN5qCR2xgeYBLivhDnllq5lALGSAj1ewO/TirgDBQQ7AZWpJiEOVeGhDAJlILoFRaH0oApVtCCvc2YClDT1tvMypDAYRPeTx8GJd91G4mrGIxuD0vvAreXs6Az35DMQDmMtQclX30PTm5YVulx7+ZU0mju6c3edy9wUkfeTBiei1ufhPpt7tjiDJt7upX0M+5LQM1BD+Tf8H2y3zcouWs3TsfuWji6E1r7tuXllcY+1qT03MgnprWELBCRw0XCKt1eNDMJ1lXwfcIwzu4NvfKcyUTGJz2lrneYchpZiqYm/ITR62TlNnf0vX8F2AYqJxeKd0yChjT3X7AxNMkkabJl3DCu25k96HGCxRuRsJQXRaaLjfZJcSafTs+8xqVAiH6OzYr6S/iBQr0+GUrOoVa/YzEko+ldrGcqVJdlK/58q5crSj8ecUCgXyblMXZ4LgZYDGkm3WR6Swg9E8/DCuMkV4SnD0b3df3b2tECnPusYtzMy6RMDvGQuDxmJ4x8BBxav/H7+ZInd74atxkf8Svn5AjTC0wx6Z1KQaNLfXndabX/fTo5OXn696LlKCS+smQSKqsBjE42DH9jZ4rkpnNIQ6r/SVfDFqObeKbtnj10/c1EfkrK//fg8aQ9MemN8e1GUBxSPehslp+ZjemTN+BqDNWYoJZ7jL04gvrrEDsjLqmT6T/771ixhJkMtXESZXJVwFOUtEPTZDy2ZNykJg8S5QG7c09FxNGuhskHGmfYVL2VKb+Pl15YpAO2ghc7EsZQIWF8yYTeuSYjftEbG4LO5PZJcUidvc5iMnDht0QaZZyBIvSMIz88zlMujd9Y5JYm3ppCLLWClCHmZ8SQVMaMuSeYVJVCVTW3e4B7JtjYUqtrRKtYkzaoGkVwhh0aUhfj2JeoiTrK837Jv9JflJTbKInv/yiK4yN3Umm/VuRKJJVzDHCWjR48OMSaNJlElN9F3MuvYktphaHqFL3u89AaPl8PLGvCy3JriPwualNMqgv+Amk4IK/H/c5EElH2eBXNHPHfkHaPe38cPUBft53W1VgIJffFUO2WomzwpNkIoKKh+/LxkCixK8eVni1uZRKOPTHD6HZcWlfIayhj7deqskmziT1EQrrBBIshMXp1IzOprGZ+jMIh4xk7JR2JjXuxj9DK4bu5JQT0FB4ubJtJ6ynxh/grvWSYFxJWl3G65D7QJA4yEWHjawi4M58UwwY29wSTSl9afsmQea1rLgiWYwii+nWnqFPWO4WqVHynLscNNIS5l5lU9pF9ARPWN+61lLxDmGFTC/uy72b84J4E02y0osFJNqL5QgpaZCfeL1WmBYltmQsDEup9xWmXXQm+Zop3e5CKBrtsZuJaW8odSEbL/7GVEuUrzdghgzsl60m6Qqm0DBjnFHdgkIqmCUlIVCtkWZGaqoZfPw1BNbsaeh5D58GTo8+BdAUniHgQr0ddjpugiPaSm+gzSy6u4wmDF8HYHkrx7P/IH/pUYi+ZTVHnpA/HsJhARr84B1VPMsqLZLEjTfpqpOiYeMQakrAfTwPLSV6uhegKYai6yWOAnXpUJ6KcHYnYqGuxmm8pPmYdkjDMZcgqRa4mcRYR5mgsMt8KExhUV76UoIkMWovbThSCWuoLhq3GgimnxmSfl3Hc/kKDT13dhJqUmo2J/EHxd/LDF2Y7UQhqrkk8+j8bp7PkpMWTzH5Q1djIK6U7q/ahGFaSF0uxofg9+YP3aVmH2NTOqAQ80hcym3ZkVQPD4AYyFnRyALrdVIamKWE4CXDu0rLBTmwgYpx1P7HixPojqxrYRXQJEMyraKhJcsnj5d0qBWIJcmushEfqR2qIasoYwj9wjLxSusERKhqqdi8928qYm06mNr0JK4VMKfmSuoQhXhPQQRgapEeDpLBcJy6X/G7rOCOC8dE56dOMCvmSXZB9b2gQ4aiaR10NFQ25ClfK0YDuxgQkB8ukXwadDuIx+paSljSe0SNhkuYnpWhgKxu50EF2q1IzfiHES8Vh68UIQvpKTrYcQUIM/wEYiu+Uawz7oMgWGhlDshsgAYmWEHW0OrD6kgv/VXpf6NQgl4ZuPYKJRMIpVb9eJgwTe41i791mMIQRIhqxUEKxCSBVSo/H5MYw0ZASK186PYwh5FI0b0haUKhK6b0qeTFMdCkrUuiDn2P9GbFLJgxRhE+aw12kSuklUDkxTMbiiQr0NyO3LoVuKRngwywUPZIu6+n0xhA7sYYyWf28NBTRlDFE9hBuSyLNIaxu0xPb+axFGKgalhUVYxJdka2Bkh+Tc5XIp4GO91dKNaEAH0zDSsF1usUPs1bGVaMxqWIn5+XcIYZRfkDP4pc2AYYJGQ8AdXaDllnJazNSvbaA4IOAmUeuKdHY6gyjxMhCKp43Soyg0IJma4QhWFF1TKZpaAjUzCifZIfR7iCpCoa/kRSN7B/AVBTCkDaHyOCTnV75oqfga1gjxgkKb5Rk2deWpDPlXICFYnxUtKCJjvr1wPkMTYnr/0nBMGDSkQLXn/23ojoQ9Gs5TSdnMWBfzRsqpP8hLoZTzWBzgpTyjrIYAALLMuLlwHUha9f6XzkfI0/5/ES5EYQhmWhrLgNVikaaI3dCpE3PjyKtlr2kO2FmlBIs+152VCUtid1SFOLTGX0aQbygSkr3pXW9jCJf0T159vDQgX2fOyMMM94UhrtIlaIpJ9ltSzP5ox5ZMWqw8cjedudFItWvLMYCYkgOp6OpX7iaVAryU8ex7Hv5VcC4vSsLj9x/YMAPiDD8mccthUfdSDLAbakPwYliJyHIg6BVUBc5w4QwwFB8pTBEOQwy/A1eQvrK6e1n9oUXjAMLwzvO0AKu5NBw/RBhSCa8QTqYGWqWos8sva7Ot/79oPf8I1PPqFy1YNqiEIZk1gM43syRUw8ym2Zq7bbdjK3btuyrMFsygLUQpK4GJXxmm+FbptrJVKAwKVY0yOLTETPAkFkNa0uV6ClXWaAny8kJrmcfYUgaUIAht4VaZtMpB5RpUEiIU/rQ884VPHGbuuUqRN5ZLA5stUrMuBMgeqJzAgBD7uQ3XWLTVN80Byi1ebWrMwYAQ5rsCENuM5zcjzTtmHkSVBKy3Zcgi0FjCIqHFc6WK3l6ImqfDtSKGcv+IBOVC8My660o3uNLMcpG7QHiLS3IJhaIoUJEiznILDuoPJqiwRw6I5wHw7RNNOpM0HSrc1RQ2//TnCU6q59H06QtavmjqD3uVM+MEF8dkOIr0ZWZXBhu8S+tDvGI77OKYuz8c+bYohDohqE89jB1a5la9jTyj9KrT4vVGAXTsxcAvZWG9mnoCnD6KmR1PZNB9jxmhVYMQSt16xddA87jl6YvSo+dd2KkdkVhSFAwfTiP7lTIE1tkWAUf24oqvM50wqhfJI73Sfd16W6TPBFwLcMJMvG9IlZ/GmF0EicaWGnTMkto9pDGkJ47rGXYZx3vVfOn1XOTsZXY3ZNpgJQO8uk8DV0gzYLh8O3iXRalPBsH/Cf0E6tfRC9L2oAOLuQaVgR0NjHb6S/JEUDDeD7LPJXvXFHLwTJpLOB6k/lSOiOc8XybTlKlGaL7lukl3Q41igm2rsTBpt020rmiWzGynuDTpnjFGKQTstUfkLO0aaZ+DKALmqzMkMW1THLoA33OmSF6Ty2MpHMBltdx8wcq0I1tOXovM2O49EofVieMUu/h+C4xhKi7d8f9Hj0KLbzscRjdYEoWjV2yQpodw6FGBcU8YRglr3f78Pp212y4jebp5fFVv+cNtRF9vcWceZ4AOttG1oDpKnee423ca2abmT/qHJS3vWA3FrN50CI3a8A/SipTuh5HdirkOsDHfsq9UjD5bl6GypQMZISYI0DMeczK3eMUS+mUV+vmddxJVUMXmcnwKe9paPo3awYcLe8it7t3Q/098UgpcNIxTYvxk9DoiylxNLyXKSIvejyP7NwjN3xNc/Kf/YK0JAdW6Wqq9br0/mBynQJ5rFPGrc9xHB9ELmb1V/N1plsfDBZ95ekRni5kt89evIyKdWhGelen06ewXqhvSeeiSJPPZvV5JN/66duuhSV6D3czZeheKX+Rbr8kc8JsZSYN9LurW88nUmJlebDrRJR6v3/NfNiaQyAIJkrIGBitK80MduO0ffPw+29P0gied//75aZ9WsypleTqD0FdScZPxZ1EbLvN0wCajWJPUSLXtVmUZ9qgpvGLPOJ1TuCSypQ8s4MSxHkemFMUkGw6yJ6MKpal5gFkjEi2mJLtifWiznCcH5DbvujMPmURZzg2/d2A3l9KOUmUIOaI8hcGNJtSvXYbhCAWf7xa8UCyKbmBh9xtUuBJnHMD+gQWcsiSQLHgcxznArRJpNiUWt/y/2AR6b365BJhyq0p+KjKuQC5dp480IU6Xeb/wV7o5AkeFBGpdezzPCavMKCJSEkiZRKnPyfP2Xg3DiedU4qIq8T+0mlNYmNl5ugyO5DbBcmsIrVXcKpTY78cVervGXqRR3RSqWFyCW0199/bKJs1M09JYGYgbWLJIooEVHYfndsBYHezYmrlanEHr2eCDlnCtJ4TjEquu65zp1jF4Mty3c+HVN/dU+iSvpuRLNbtUPkart9bhsZm2QwkuZq7HjAztOi2BZE4SqRBbdrVyhlQbGzsmNXw5urRAjwhmk9LwvKuHEUcyYN0tDRGdTaOTHMsw++rZMagwxqtUXq+cCQsST4tmwc4/+2s7pQn6JU1c0EZOpc589gSj88nY0+1qZGNGdXlFSpp0/i8vVOuSxpYqy3Mk433b6rcKqzJuhEwbqlVKkfncj7XbW5sHlbqlZr8RaprC4yZgShGWmfMqZto0UnNrK3vrGyfb2xvb346XDbHmiX6Cub7K1EJ9Cu+FhTt4qNFccSE1YoP1RrBzLXl7cWGkzpc4RbCZDePu4aPtcIwJGAx1ZYZQH9gD9GMOjObU6BYLa98gHyA/sapG+mgmMZWThQ182DhBAwBtmeFfDqZQWuuYVmk8FsnTyxbCLi3bPE5OsfnCB/9FAdz+SMw6ATsM4aMQlpstWLisx5lqGjnHwm/AB7wqcTCi1DcX0sno1bRtj+IACrg9gf0ya/CkldhuwdVHsdafW3lI+K35K/qf70VcSSHnlv3YkmJNNyVegXxqlYxdzIGjosB3encepa/Rc0/MGwIvf6Fk8xrNLaHUXsCSa1Wqa99PPFLgL7k/vn1tHdysvd0c4pfd/XTmlk3K7Who6ZptVrFrNeXj7Y/fnk4HzRXNzZ3Do+ODnc2z1cXFD78DxjV6AY4bVK9AAAAAElFTkSuQmCC" alt="Mc logo" width="150" height="150">
-                <div class="glass" style="background-color: rgba(74, 69, 69, 0.366);">
-                    <p>I host a speed test server for your conviencence. Test your internet speed
+          </li>
 
-
-                    </p>
-                    <div class="button">
-                        <a class="modern-btn" href="https://st.carsonmayn.com/">Test your speed</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="glass">
-            <div class="up">
-                <img src="https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon.svg" alt="Mc logo" width="150" height="150">
-                <div class="glass" >
-                    <p>I use uptime kuma to keep track of the status of my services
-
-                    </p>
-                    <div class="button">
-                        <a class="modern-btn" href="https://st.carsonmayn.com/">Test your speed</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-
-        
-    </body>
-</html>
+          
+        </ul>
+      </section>
+      
     <script>
+        
+if(window.innerHeight > window.innerWidth){
+    alert("Please use Landscape!");
+}
+const slidesContainer = document.getElementById("slides-container");
+const subs = document.querySelectorAll("table"); // Select all elements with the class 'sub'
+const slide = document.querySelector(".slide");
+const prevButton = document.getElementById("slide-arrow-prev");
+const nextButton = document.getElementById("slide-arrow-next");
+
+function moveSubDownAndSlide(action) {
+    // Move all elements with the 'sub' class down out of view
+
+    subs.forEach(sub => {
+        sub.style.transition = "transform .7s ease"; // Add transition for smooth animation
+        sub.style.transform = "translateY(-200%)"; // Move sub down (100% of its height)
+    });
+
+    // Wait for the subs to move out of sight before advancing the slide
+    setTimeout(() => {
+        const slideWidth = slide.clientWidth;
+
+        // Advance or go back the slide
+        if (action === "next") {
+            slidesContainer.scrollLeft += slideWidth;
+        } else if (action === "prev") {
+            slidesContainer.scrollLeft -= slideWidth;
+        }
+
+        // After the slide movement, move the subs back into view
+        setTimeout(() => {
+            subs.forEach(sub => {
+                sub.style.transform = "translateY(0%)"; // Bring sub back up
+            });
+        }, 200); // Delay slightly to give room for the slide to change
+    }, 500); // Wait for subs to move down before advancing slide
+}
+
+// Handle the next button click
+nextButton.addEventListener("click", () => {
+    moveSubDownAndSlide("next");
+});
+
+// Handle the previous button click
+prevButton.addEventListener("click", () => {
+    moveSubDownAndSlide("prev");
+});
+
+
         
         </script>
     
