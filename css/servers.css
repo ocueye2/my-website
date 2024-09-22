@@ -114,6 +114,8 @@
   transform: scale(1);
   transition: all .3s;
   z-index: 10;
+  margin-left: 30%;
+  margin-right: 30%;
   }
   
   
