@@ -33,6 +33,7 @@ def bake():
     {load(f"other/nav.html")}
     {load(f"html/{name}.html")}
     <script>
+        console.log("inspect element is not hacking my website")
         {load(f"js/{name}.js")}
         </script>
     
