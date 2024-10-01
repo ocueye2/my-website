@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 def load(file):
     path = os.path.dirname(sys.argv[0])
