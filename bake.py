@@ -50,6 +50,8 @@ def bake():
 
 
 
-
+print("starting")
+print("----------")
 bake()
+print("----------")
 print("done")
