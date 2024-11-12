@@ -37,10 +37,24 @@ class webui(object):
         return load("bake/gitserver.html")
 
     @cherrypy.expose
-    def submit(self, phone="empty", email="empty", message="empty", pref="", name=""):
+    def submit(self, honeypot="empty", email="empty", message="empty", pref="", name="",findus=""):
         global contact
+        phone = honeypot
         if phone == "empty":
             return load("bake/error.html")
+        elif not findus == "":
+            with open(f"{base_dir}/botinfo.html", "a") as f:
+                cherrypy.response.status = 502
+                f.write(f"""
+                {{
+                    "name": "{name}",
+                    "pref": "{pref}",
+                    "email": "{email}",
+                    "phone": "{phone}",
+                    "message": "{message}",
+                }},
+                """)
+            return load("fakegateway.html")
         else:
             with open(f"{base_dir}/contact.html", "a") as f:
                 f.write(f"""
