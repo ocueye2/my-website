@@ -20,7 +20,7 @@ def bake():
         name = i.split(".")[0]
 
         out = f"""
-        <html>
+        <!DOCTYPE html>
     <head>
         <title>{i.split(".")[0]}</title>
         <link rel="icon" type="image/x-icon" href="https://carsonmayn.com/static/favicon.png">
@@ -53,5 +53,45 @@ def bake():
 print("starting")
 print("----------")
 bake()
+html = ""
+for catogory in os.listdir(f"{os.path.dirname(sys.argv[0])}/card_data"):
+    html += f'''
+    <div class="glass">
+    <h1> {catogory}: </h1>
+   <div class="cardcon {catogory}"> '''
+    for item in os.listdir(f"{os.path.dirname(sys.argv[0])}/card_data/{catogory}"):
+        f = open(f"{os.path.dirname(sys.argv[0])}/card_data/{catogory}/{item}")
+        html += f.read()
+        f.close()
+    html += f'</div> </div>'
+path = os.path.dirname(sys.argv[0])
+page = f"""
+ <!DOCTYPE html>
+    <head>
+        <title>My Stuff</title>
+        <link rel="icon" type="image/x-icon" href="https://carsonmayn.com/static/favicon.png">
+        <style>
+        {load(f"css/cards.css")}
+        {load(f"other/all.css")}
+        {load(f"other/nav.css")}
+        </style>
+    </head>
+    <body>
+    {load(f"other/nav.html")}
+    <br>
+    <br>
+    <br>
+    {html}
+    <script>
+        console.log("inspect element is not hacking my website")
+        {load(f"js/cards.js")}
+        </script>
+    
+    </body>
+ """
+f = open(f"{path}/bake/cards.html","w")
+f.write(page)
+f.close()
+    
 print("----------")
 print("done")

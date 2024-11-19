@@ -17,20 +17,21 @@ def load(file):
 class webui(object):
 
     @cherrypy.expose
+    def portfolio(self):
+        return load("bake/portfolio.html")
+
+    @cherrypy.expose
     def index(self):
         return load("bake/index.html")
 
     @cherrypy.expose
-    def projects(self):
-        return load("bake/projects.html")
+    def stuff(self):
+        return load("bake/stuff.html")
 
     @cherrypy.expose
     def contact(self):
         return load("bake/contact.html")
 
-    @cherrypy.expose
-    def servers(self):
-        return load("bake/servers.html")
 
     @cherrypy.expose
     def Maintenence(self):
@@ -93,5 +94,4 @@ if __name__ == '__main__':
         'server.socket_port': 8080,
         'log.screen': True,
     })
-    
     cherrypy.quickstart(webui(), '/', config)
