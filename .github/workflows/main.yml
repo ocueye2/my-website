@@ -1,61 +1,36 @@
-name: Deploy Portainer Stack
+name: Build and Push Docker Image
 
 on:
-  workflow_dispatch:
-    inputs:
-      stack_name:
-        description: 'Name of the stack to deploy/update'
-        required: true
-      endpoint_id:
-        description: 'Portainer endpoint ID where the stack should be deployed'
-        required: true
+  push:
+    branches:
+      - main
 
 jobs:
-  deploy-stack:
+  build-and-push:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      packages: write
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v3
+      - name: Check Out Repository
+        uses: actions/checkout@v2
 
-    - name: Zip repository contents
-      run: |
-        zip -r repo.zip .
+      - name: Build Project
+        run: |
+          npm install
+          npm run build
 
-    - name: Deploy repository as a stack in Portainer
-      env:
-        PORTAINER_URL: ${{ secrets.PORTAINER_URL }}
-        PORTAINER_USERNAME: ${{ secrets.PORTAINER_USERNAME }}
-        PORTAINER_PASSWORD: ${{ secrets.PORTAINER_PASSWORD }}
-      run: |
-        echo "Logging in to Portainer..."
-        sudo apt-get install jq
-        JWT=$(curl -s -X POST "$PORTAINER_URL/api/auth" \
-          -H "Content-Type: application/json" \
-          -d "{\"Username\": \"$PORTAINER_USERNAME\", \"Password\": \"$PORTAINER_PASSWORD\"}" | jq -r .jwt)
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-        if [ -z "$JWT" ]; then
-          echo "Failed to log in to Portainer"
-          exit 1
-        fi
+      - name: Build Docker image
+        run: |
+          REPO_LOWER=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+          BRANCH_NAME=$(echo ${{ github.ref_name }} | tr '[:upper:]' '[:lower:]') # Get the branch name in lowercase
+          docker build . -t ghcr.io/$REPO_LOWER/portfolio:$BRANCH_NAME
 
-        echo "Uploading stack file..."
-        STACK_FILE_CONTENT=$(base64 -w 0 repo.zip)
-
-        RESPONSE=$(curl -s -X POST "$PORTAINER_URL/api/stacks" \
-          -H "Authorization: Bearer $JWT" \
-          -H "Content-Type: application/json" \
-          -d "{
-            \"Name\": \"${{ inputs.stack_name }}\",
-            \"EndpointID\": \"${{ inputs.endpoint_id }}\",
-            \"SwarmID\": null,
-            \"StackFileContent\": \"$STACK_FILE_CONTENT\",
-            \"Env\": []
-          }")
-
-        if echo $RESPONSE | jq -e '.message' >/dev/null; then
-          echo "Error deploying stack: $(echo $RESPONSE | jq -r '.message')"
-          exit 1
-        fi
-
-        echo "Stack deployed successfully!"
+      - name: Push Docker image to GitHub Packages
+        run: |
+          REPO_LOWER=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+          BRANCH_NAME=$(echo ${{ github.ref_name }} | tr '[:upper:]' '[:lower:]') # Get the branch name in lowercase
+          docker push ghcr.io/$REPO_LOWER/portfolio:$BRANCH_NAME
