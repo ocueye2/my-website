@@ -1,6 +1,7 @@
 # v5
 services:
-  web:
-    build: .
+  app:
+    image: ghcr.io/aytronnfr/portfolio/portfolio:develop
+    restart: always
     ports:
       - "8080:8080"
