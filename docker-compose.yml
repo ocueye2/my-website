@@ -1,7 +1,7 @@
 # v5
 services:
   app:
-    image: ghcr.io/aytronnfr/portfolio/portfolio:develop
+    image: ghcr.io/ocueye2/my-website:main
     restart: always
     ports:
       - "8080:8080"
