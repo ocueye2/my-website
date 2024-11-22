@@ -1,19 +1,18 @@
 # Start with your base image
 FROM  python:3.12.3-slim
 
-# Set the working directory in the container
+
 WORKDIR /app
 
-# Copy the requirements file into the container at /app
-COPY requirements.txt .
+# clone repo
+RUN apt-get install git
+RUN git clone https://github.com/ocueye2/my-website.git
 
-# Install any needed packages specified in requirements.txt
 RUN pip install cherrypy
-# Copy the rest of your application code into the container at /app
-COPY . .
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
+WORKDIR /app/my-website
 # Run app.py when the container launches
 CMD ["python", "app.py"]
