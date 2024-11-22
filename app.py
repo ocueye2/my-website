@@ -18,7 +18,7 @@ class webui(object):
 
     @cherrypy.expose
     def portfolio(self):
-        return load("bake/portfolio.html")
+        return load("bake/cards.html")
 
     @cherrypy.expose
     def index(self):

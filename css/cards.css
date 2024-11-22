@@ -60,40 +60,59 @@
 
 .gitea,
 .github {
-    display: flex;
-    width: 30px;
-    height: 30px;
+    display: inline-flex;
+    /* Flex layout for centering */
+    justify-content: center;
+    /* Center content horizontally */
     align-items: center;
-    white-space: nowrap;
-    border-radius: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
+    /* Center content vertically */
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 5px;
+    /* Remove padding for a perfect fit */
     text-decoration: none;
     color: white;
     background-color: black;
     transform: scale(1);
-    transition: all .3s;
+    transition: all 0.3s;
     z-index: 10;
+    overflow: hidden;
+    /* Clip content that exceeds the button boundaries */
 }
 
-
-.gitea p,
-.github p {
-    margin-left: 10px;
-    transform: scale(1);
-    transition: all .3s;
+/* Image settings */
+.gitea img,
+.github img {
+    width: 100%;
+    /* Make the image fill the button width */
+    height: 100%;
+    /* Make the image fill the button height */
+    object-fit: cover;
+    /* Ensure the image covers the button area */
+    object-position: center;
+    /* Center the image */
 }
 
+/* Hover effect */
 .gitea:hover,
 .github:hover {
     z-index: 100;
     transform: scale(1.3);
-    transition: all .3s;
     background-color: greenyellow;
 }
 
 table {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.blur {
+    border-radius: 20px;
+    padding: 5px;
+    margin: 5px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(159, 159, 159, 0.195);
+    color: white;
+    text-align: center;
 }
