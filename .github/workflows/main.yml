@@ -1,0 +1,60 @@
+name: Deploy Portainer Stack
+
+on:
+  workflow_dispatch:
+    inputs:
+      stack_name:
+        description: 'Name of the stack to deploy/update'
+        required: true
+      endpoint_id:
+        description: 'Portainer endpoint ID where the stack should be deployed'
+        required: true
+
+jobs:
+  deploy-stack:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+
+    - name: Zip repository contents
+      run: |
+        zip -r repo.zip .
+
+    - name: Deploy repository as a stack in Portainer
+      env:
+        PORTAINER_URL: ${{ secrets.PORTAINER_URL }}
+        PORTAINER_USERNAME: ${{ secrets.PORTAINER_USERNAME }}
+        PORTAINER_PASSWORD: ${{ secrets.PORTAINER_PASSWORD }}
+      run: |
+        echo "Logging in to Portainer..."
+        JWT=$(curl -s -X POST "$PORTAINER_URL/api/auth" \
+          -H "Content-Type: application/json" \
+          -d "{\"Username\": \"$PORTAINER_USERNAME\", \"Password\": \"$PORTAINER_PASSWORD\"}" | jq -r .jwt)
+
+        if [ -z "$JWT" ]; then
+          echo "Failed to log in to Portainer"
+          exit 1
+        fi
+
+        echo "Uploading stack file..."
+        STACK_FILE_CONTENT=$(base64 -w 0 repo.zip)
+
+        RESPONSE=$(curl -s -X POST "$PORTAINER_URL/api/stacks" \
+          -H "Authorization: Bearer $JWT" \
+          -H "Content-Type: application/json" \
+          -d "{
+            \"Name\": \"${{ inputs.stack_name }}\",
+            \"EndpointID\": \"${{ inputs.endpoint_id }}\",
+            \"SwarmID\": null,
+            \"StackFileContent\": \"$STACK_FILE_CONTENT\",
+            \"Env\": []
+          }")
+
+        if echo $RESPONSE | jq -e '.message' >/dev/null; then
+          echo "Error deploying stack: $(echo $RESPONSE | jq -r '.message')"
+          exit 1
+        fi
+
+        echo "Stack deployed successfully!"
