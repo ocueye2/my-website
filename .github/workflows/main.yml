@@ -1,0 +1,50 @@
+name: Update Portainer Container
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_name:
+        description: 'Docker image name to update (e.g., my-app:latest)'
+        required: true
+      endpoint_id:
+        description: 'Portainer endpoint ID to update the container on'
+        required: true
+      container_id:
+        description: 'Portainer container ID to update'
+        required: true
+
+jobs:
+  update-container:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Update container image in Portainer
+      env:
+        PORTAINER_URL: ${{ secrets.PORTAINER_URL }}
+        PORTAINER_USERNAME: ${{ secrets.PORTAINER_USERNAME }}
+        PORTAINER_PASSWORD: ${{ secrets.PORTAINER_PASSWORD }}
+      run: |
+        echo "Logging in to Portainer..."
+        JWT=$(curl -s -X POST "$PORTAINER_URL/api/auth" \
+          -H "Content-Type: application/json" \
+          -d "{\"Username\": \"$PORTAINER_USERNAME\", \"Password\": \"$PORTAINER_PASSWORD\"}" | jq -r .jwt)
+
+        if [ -z "$JWT" ]; then
+          echo "Failed to log in to Portainer"
+          exit 1
+        fi
+
+        echo "Updating container with new image..."
+        RESPONSE=$(curl -s -X POST "$PORTAINER_URL/api/endpoints/${{ inputs.endpoint_id }}/docker/containers/${{ inputs.container_id }}/update?Image=${{ inputs.image_name }}" \
+          -H "Authorization: Bearer $JWT" \
+          -H "Content-Type: application/json")
+
+        if [ "$(echo $RESPONSE | jq -r '.message')" != "null" ]; then
+          echo "Error updating container: $(echo $RESPONSE | jq -r '.message')"
+          exit 1
+        fi
+
+        echo "Container updated successfully!"
