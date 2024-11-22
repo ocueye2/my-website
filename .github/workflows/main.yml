@@ -29,6 +29,7 @@ jobs:
         PORTAINER_PASSWORD: ${{ secrets.PORTAINER_PASSWORD }}
       run: |
         echo "Logging in to Portainer..."
+        sudo apt-get install jq
         JWT=$(curl -s -X POST "$PORTAINER_URL/api/auth" \
           -H "Content-Type: application/json" \
           -d "{\"Username\": \"$PORTAINER_USERNAME\", \"Password\": \"$PORTAINER_PASSWORD\"}" | jq -r .jwt)
