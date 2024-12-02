@@ -2,17 +2,17 @@
     overflow: hidden;
     backdrop-filter: blur(10px);
     background-color: #9f9f9f32;
-    position: fixed; 
-    left: 50%; 
+    position: fixed;
+    left: 50%;
     padding: 20px;
     border-radius: 30px;
     z-index: 1000;
-    transform: translate(-50%, -30%) scale(0.9); 
+    transform: translate(-50%, -30%) scale(0.9);
     transition: all 0.3s;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .navbar:hover {
@@ -38,11 +38,21 @@
     color: black;
     margin-left: 30px;
     margin-right: 30px;
-    
-    
+
+
 }
 
+.navbar a:active {
+    transform: scale(1);
+    transition: all 0.3s;
+    background: #2e312e;
+    color: rgb(255, 255, 255);
+    margin-left: 30px;
+    margin-right: 30px;
+
+
+}
 
 .main {
-    margin-top: 30px; 
+    margin-top: 30px;
 }
