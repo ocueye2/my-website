@@ -1,7 +1,7 @@
-# v5
+# v2
+# the above comment is ment to trigger the autopulll in portainer
 services:
-  app:
-    image: ghcr.io/ocueye2/my-website:main
-    restart: always
+  web:
+    build: .
     ports:
       - "8080:8080"
