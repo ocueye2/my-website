@@ -11,8 +11,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/ocueye2/my-website.git
-
 RUN pip install cherrypy
 
 # Make port 8080 available to the world outside this container
