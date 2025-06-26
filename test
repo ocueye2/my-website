@@ -1,0 +1,10 @@
+#include "msp430x54x.h"
+void main()
+P4DIR |=0xFF;
+P4OUT |=0xFF;
+WDTCTL = WDTPW + WDTHOLD;
+while (1)
+P4OUT &=~OxFF;
+_delay_cycles(1000000);
+P4OUT | =0xFF;
+_delay_cycles(1000000);
